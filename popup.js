@@ -1,6 +1,9 @@
 // Check if password is set
 chrome.storage.local.get(['csvPassword'], (result) => {
-  if (!result.csvPassword) {
+  if (result.csvPassword) {
+    const settingsLink = document.querySelector('.settings-link');
+    if (settingsLink) settingsLink.style.display = 'none';
+  } else {
     showMessage('Please set a password in settings first', 'error');
     document.getElementById('passwordSection').style.display = 'none';
     document.getElementById('downloadSection').style.display = 'none';
